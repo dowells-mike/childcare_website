@@ -131,7 +131,7 @@ CREATE TABLE `user` (
   `password` varchar(30) NOT NULL,
   `phone_number` varchar(30) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `role` enum('public''member''admin') NOT NULL
+  `role` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
