@@ -99,7 +99,7 @@
             $id = mysqli_insert_id($db_connection);
             $message = "
             <div class='content'>
-            <h4>Added<h4>
+            <h4>Added content<h4>
             <br/>
             <div>";
             echo "$message";
