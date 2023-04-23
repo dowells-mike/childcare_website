@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2023 at 12:06 AM
+-- Generation Time: Apr 22, 2023 at 02:13 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -34,9 +34,6 @@ CREATE TABLE `child` (
   `date_of_birth` date NOT NULL,
   `gender` enum('male''female') NOT NULL,
   `categories` enum('babies''wobblers''toddlers''preschool') NOT NULL,
-  `temperature` decimal(4,1) NOT NULL,
-  `breakfast` text NOT NULL,
-  `lunch` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `fee_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -64,7 +61,11 @@ CREATE TABLE `contact_us_message` (
 CREATE TABLE `day_detail` (
   `day_id` int(11) NOT NULL,
   `date` date NOT NULL,
-  `child_id` int(11) NOT NULL
+  `child_id` int(11) NOT NULL,
+  `temperature` decimal(4,2) DEFAULT NULL,
+  `breakfast` varchar(255) DEFAULT NULL,
+  `lunch` varchar(255) DEFAULT NULL,
+  `activities` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
