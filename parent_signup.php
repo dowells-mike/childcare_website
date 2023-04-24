@@ -55,13 +55,7 @@
             <div  class="right" >
                 <input type="number" name="User_ID" placeholder="User id" required>
             </div>
-            <div  class="row" >
-            <div  class="left" >
-                <label for="Role">Role</label> 
-            </div>
-            <div  class="right" >
-                <input type="text" name="role" value = "member" placeholder="Role" required readonly>
-            </div>
+            
             
 
 
@@ -89,7 +83,7 @@
         $phone = $_POST['phone'];
         $email = $_POST['email'];
         $use = $_POST['User_ID'];
-        $member = $_POST['role'];
+        $member = "member";
         
     }
     $query = "INSERT INTO user (user_id,first_name,last_name,username,password,role,phone_number,email)
