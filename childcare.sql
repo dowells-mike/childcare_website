@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2023 at 02:13 PM
+-- Generation Time: Apr 24, 2023 at 11:16 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -131,7 +131,7 @@ CREATE TABLE `user` (
   `password` varchar(30) NOT NULL,
   `phone_number` varchar(30) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `role` enum('public''member''admin') NOT NULL
+  `role` enum('member','admin') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -212,7 +212,7 @@ ALTER TABLE `contact_us_message`
 -- AUTO_INCREMENT for table `day_detail`
 --
 ALTER TABLE `day_detail`
-  MODIFY `day_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `day_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `fee`
