@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2023 at 11:16 AM
+-- Generation Time: Apr 24, 2023 at 11:30 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -83,17 +83,6 @@ CREATE TABLE `fee` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `page`
---
-
-CREATE TABLE `page` (
-  `page_id` int(11) NOT NULL,
-  `access_level` enum('public''member''admin') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `service`
 --
 
@@ -131,7 +120,7 @@ CREATE TABLE `user` (
   `password` varchar(30) NOT NULL,
   `phone_number` varchar(30) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `role` enum('public''member''admin') NOT NULL
+  `role` enum('member','admin') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -164,12 +153,6 @@ ALTER TABLE `day_detail`
 --
 ALTER TABLE `fee`
   ADD PRIMARY KEY (`fee_id`);
-
---
--- Indexes for table `page`
---
-ALTER TABLE `page`
-  ADD PRIMARY KEY (`page_id`);
 
 --
 -- Indexes for table `service`
@@ -219,12 +202,6 @@ ALTER TABLE `day_detail`
 --
 ALTER TABLE `fee`
   MODIFY `fee_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `page`
---
-ALTER TABLE `page`
-  MODIFY `page_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `service`
