@@ -60,7 +60,7 @@
                 <label for="Role">Role</label> 
             </div>
             <div  class="right" >
-                <input type="text" name="role" placeholder="Role" required>
+                <input type="text" name="role" value = "member" placeholder="Role" required readonly>
             </div>
             
 

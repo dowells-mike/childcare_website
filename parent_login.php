@@ -37,6 +37,7 @@
       }
       // // Check if info is submitted
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $errors =[];
         if (!isset($_POST['username']) || empty($_POST['username']) ) {
           $errors[] = 'Please enter a valid username';
         }
@@ -87,10 +88,13 @@
                   <div  class='right' >  <label>".$first."</label> </div></div>\n");  
             }
           }
-          echo "<h2>Error!</h2><h3>The following error(s) occurred, Please resubmit your information:</h3>";
+          else{
+            echo "<h2>Error!</h2><h3>The following error(s) occurred, Please resubmit your information:</h3>";
             foreach ($errors as $msg) { 
                 echo "- $msg<br/><br/>";
             } 
+          }
+          
       }
       
     ?>
