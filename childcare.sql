@@ -32,8 +32,8 @@ CREATE TABLE `child` (
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `date_of_birth` date NOT NULL,
-  `gender` enum('male''female') NOT NULL,
-  `categories` enum('babies''wobblers''toddlers''preschool') NOT NULL,
+  `gender` enum('male','female') NOT NULL,
+  `categories` enum('babies','wobblers','toddlers','preschool') NOT NULL,
   `user_id` int(11) NOT NULL,
   `fee_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -120,7 +120,7 @@ CREATE TABLE `user` (
   `password` varchar(30) NOT NULL,
   `phone_number` varchar(30) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `role` enum('member','admin') NOT NULL
+  `role` enum('member','admin','public') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

@@ -27,8 +27,8 @@
                     <li><a href="admin_dashboard.php">Dashboard</a></li>
                     <li><a href="logout.php">Logout</a></li>
                 <?php } else { ?>
-                    <li><a href="parent_login.php">Parent Login</a></li>
-                    <li><a href="admin_login.php">Admin Login</a></li>
+                    <li><a href="login.php">Parent Login</a></li>
+                    <li><a href="login.php">Admin Login</a></li>
                 <?php } ?>
             </ul>
             <form class="navbar-form navbar-right" action="search.php" method="get">

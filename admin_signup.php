@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
-    <head><link rel="stylesheet" href=""></head>
-    <title>Parent Signup</title>
-    <body>
-    
-        <!--create a form-->
-    <div class = "content">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Signup</title>
+</head>
+<body>
+<div class = "content">
         <form  method="post"  >
             <div  class="row" >
             <div  class="left" >
@@ -54,7 +56,6 @@
         <div class="search">
             <input type="submit" value="Signup" class="register">
             <br><br>
-            <button><a href="test.html">Else Return Home</a></button>
         </div>
         </form>
     </div>
@@ -72,7 +73,7 @@
         $Password = $_POST['Password'];
         $phone = $_POST['phone'];
         $email = $_POST['email'];
-        $member = "member";
+        $member = "admin";
         
     }
     $query = "INSERT INTO user (first_name,last_name,username,password,role,phone_number,email)
@@ -94,6 +95,5 @@
     }
     
     ?>
-    </body>
+</body>
 </html>
-        
