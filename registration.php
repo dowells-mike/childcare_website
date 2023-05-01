@@ -8,10 +8,6 @@
 </head>
 <body>
     <form  method="post" novalidate>
-                <label for="PARENT">ENTER USERNAME</label> 
-                <label for="UserName">User Name</label> 
-                <input type="text" name="UserName" placeholder="User Name "  required> 
-                <br><br>
                 <label for="child">REGISTER CHILD</label> 
                 <br><br>
 
@@ -79,13 +75,8 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     require ('/Applications/XAMPP/connectiontest.php');
+    require("session.php");
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (!isset($_POST['UserName']) || empty($_POST['UserName'])) {
-            $errors[0] = 'Please enter a valid username';
-          }
-          else {
-              $Uname = $_POST['UserName'];
-        }
         if (!isset($_POST['firstname']) || empty($_POST['firstname'])) {
             $errors[] = 'Please enter a valid First Name';
         }else{
@@ -122,12 +113,7 @@
         }
 
         if (empty($errors)) {
-        $query = "SELECT user_id FROM user WHERE username = '$Uname'";
-        $result= mysqli_query($db_connection,$query);
-        if (mysqli_num_rows($result) == 1) {
-            $data = mysqli_fetch_assoc($result);
-            $userID= $data['user_id'];
-        }
+        $userID = $_SESSION["userid"];
 
 
         $query = "INSERT INTO child (first_name,last_name,date_of_birth,gender,categories,user_id,fee_id)

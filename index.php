@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <?php include('header.php'); ?>
+    <?php
+    session_start(); 
+    include('header.php'); 
+    ?>
 
     <div class="jumbotron text-center">
         <h1>Welcome to Childcare Premises</h1>

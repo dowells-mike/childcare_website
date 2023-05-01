@@ -5,25 +5,18 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <title>Parent Login</title>
 </head>
 
 <body>
-  <?php //include('header.php'); 
-  ?>
-  <form id="login-form" method="post">
-    <input type="text" name="username" id="UserName" class="LoginForm" placeholder="Username">
-    <input type="password" name="password" id="password" class="LoginForm" placeholder="Password">
-    <input type="submit" value="Login" id="Login">
-  </form>
-  <p>If not and existing user please <a href="signup.php">Sign up</a> here!</p>
   <?php
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
+  include "header.php";
   require ('/Applications/XAMPP/connectiontest.php');
-
+  require("session.php");
 
   function validate_password($password)
   {
@@ -60,38 +53,20 @@
         $errors[] = 'Password should not be less than 8 characters';
       }
     }
-    $sql = "SELECT * FROM user WHERE username='$uname' AND password='$pass'";
-    $result = mysqli_query($db_connection, $sql);
 
     if (empty($errors)) {
+      $sql = "SELECT * FROM user WHERE username='$uname' AND password='$pass'";
+      $result = mysqli_query($db_connection, $sql);
       if (mysqli_num_rows($result) === 1) {
-        if (isset($_SESSION['user']['role']) && $_SESSION['user']['role']=== 'admin') {
-          header("Location: parent_signup.php");
-            exit();
-          } else {
-            header("Location: index.php");
-            exit(); 
-          }
-        
         $row = mysqli_fetch_assoc($result);
-        $username = $row['username'];
-        $last = $row['last_name'];
-        $first = $row['first_name'];
-        echo nl2br(" <div  class='row' >
-                  <div  class='left' >
-                      <label>User Name:</label> 
-                  </div>
-                  <div  class='right' >  <label>" . $username . "</label> </div></div>\n");
-        echo nl2br(" <div  class='row' >
-                  <div  class='left' >
-                      <label>Last Name:</label> 
-                  </div>
-                  <div  class='right' >  <label>" . $last . "</label> </div></div>\n");
-        echo nl2br(" <div  class='row' >
-                  <div  class='left' >
-                      <label>First Name:</label> 
-                  </div>
-                  <div  class='right' >  <label>" . $first . "</label> </div></div>\n");
+        $_SESSION["userid"] = $row['user_id'];
+        $_SESSION["name"] = $row['first_name'];
+        $_SESSION["role"]= $row["role"];
+        $_SESSION["username"]= $row["username"];
+        echo $_SESSION["userid"];
+        echo $_SESSION["name"];
+        header("Location: index.php");
+        exit();
       }
     } else {
       echo "<h2>Error!</h2><h3>The following error(s) occurred, Please resubmit your information:</h3>";
@@ -102,6 +77,13 @@
   }
 
   ?>
+  <form id="login-form" method="post">
+    <input type="text" name="username" id="UserName" class="LoginForm" placeholder="Username">
+    <input type="password" name="password" id="password" class="LoginForm" placeholder="Password">
+    <input type="submit" value="Login" id="Login">
+  </form>
+  <p>If not and existing user please <a href="signup.php">Sign up</a> here!</p>
+  
 </body>
 
 </html>

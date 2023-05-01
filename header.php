@@ -20,11 +20,11 @@
                 <li><a href="contact_us.php">Contact Us</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <?php if(isset($_SESSION['parent_id'])) { ?>
-                    <li><a href="parent_dashboard.php">Dashboard</a></li>
+                <?php if(isset($_SESSION['role'])&&$_SESSION['role']==='member') { ?>
+                    <li><a href="index.php">Logged-in User: <?php echo $_SESSION['username'];?></a></li>
                     <li><a href="logout.php">Logout</a></li>
-                <?php } elseif(isset($_SESSION['admin_id'])) { ?>
-                    <li><a href="admin_dashboard.php">Dashboard</a></li>
+                <?php } elseif(isset($_SESSION['role'])&&$_SESSION['role']==='admin') { ?>
+                    <li><a href="index.php">Logged-in Admin <?php echo $_SESSION['username'];?></a></li>
                     <li><a href="logout.php">Logout</a></li>
                 <?php } else { ?>
                     <li><a href="login.php">Parent Login</a></li>
@@ -37,11 +37,11 @@
                 </div>
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
             </form>
-            <?php if(isset($_SESSION['parent_id'])) { ?>
+            <!--<?php if(isset($_SESSION['role'])&&$_SESSION['role']==='member') { ?>
                 <p class="navbar-text navbar-right">Logged in as Parent</p>
-            <?php } elseif(isset($_SESSION['admin_id'])) { ?>
+            <?php } elseif(isset($_SESSION['role'])&&$_SESSION['role']==='admin') { ?>
                 <p class="navbar-text navbar-right">Logged in as Admin</p>
-            <?php } ?>
+            <?php } ?>-->
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
