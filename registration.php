@@ -138,6 +138,7 @@
                 $errors[] = "Error inserting Member: " . mysqli_error($db_connection);
             }
         }
+        }
     ?>
 </body>
 </html>
