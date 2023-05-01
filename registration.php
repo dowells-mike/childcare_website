@@ -7,7 +7,7 @@
     <title>Registration</title>
 </head>
 <body>
-    <form  method="post">
+    <form  method="post" novalidate>
                 <label for="parent">Parent Details</label> 
                 <br><br>
 
@@ -26,6 +26,13 @@
                 <label for="email">Email</label> 
                 <input type="text" name="email" placeholder="Email" required>
                 <br>
+
+                <label for="UserName">User Name</label> 
+                <input type="text" name="UserName" placeholder="User Name "  required> 
+                <br>
+
+                <label for="Password">Password</label> 
+                <input type="password" name="Password" placeholder="Password" required>
                 <br><br>
 
                 <label for="child">Child Details</label> 
@@ -96,6 +103,7 @@
     error_reporting(E_ALL);
     require ('/Applications/XAMPP/connectiontest.php');
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $member = "member";
         if (!isset($_POST['Firstname']) || empty($_POST['Firstname'])) {
             $errors[] = 'Please enter a valid First Name';
         }else{
@@ -106,16 +114,72 @@
         }else{
             $Lname = $_POST['LastName'];
         }
+        function validate_phone($phone){
+            if(preg_match('/^[0-9]{10}+$/', $phone)) {
+                return true;
+            } else {
+                return false;
+                }
+        }
+    
         if (!isset($_POST['phone']) || empty($_POST['phone'])) {
-            $errors[] = 'Please enter a valid Phone Number';
-        }else{
+            $errors[] = 'Please enter a valid phone Number';
+        } else {
             $phone = $_POST['phone'];
+            if (validate_phone($phone)) {
+            }
+            else {
+                $errors[] = 'Phone Number must be at least 10 digits';
+            }
         }
         if (!isset($_POST['email']) || empty($_POST['email'])) {
             $errors[] = 'Please enter a valid email';
         }else{
             $email = $_POST['email'];
         }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $member = "member";
+        
+        if (!isset($_POST['UserName']) || empty($_POST['UserName'])) {
+            $errors[0] = 'Please enter a valid username';
+        }
+        else {
+            $Uname = $_POST['UserName'];
+        }
+        
+        $sql = "SELECT * FROM user WHERE username = '$Uname'";
+        $result = mysqli_query($db_connection, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            $errors[1] = "the User Name $Uname already exists.";
+        }
+        function validate_password($password)
+        {
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $number    = preg_match('@[0-9]@', $password);
+
+        if (!$uppercase || !$lowercase || !$number || strlen($password) < 8) {
+        // tell the user something went wrong
+        return false;
+        } else {
+        return true;
+        }
+        }
+        if (!isset($_POST['Password']) || empty($_POST['Password'])) {
+            $errors[] = 'Please enter a valid password';
+        } else {
+            //store user input
+            $Password = $_POST['Password'];
+            if (validate_password($Password)) {
+            } else {
+            //store error message in array
+            $errors[] = 'Password should contain lowercase';
+            $errors[] = 'Password should contain uppercase';
+            $errors[] = 'Password should contain numbers';
+            $errors[] = 'Password should not be less than 8 characters';
+            }
+        }
+
         if (!isset($_POST['firstname']) || empty($_POST['firstname'])) {
             $errors[] = 'Please enter a valid First Name';
         }else{
@@ -150,24 +214,23 @@
         else{
             $duration = $_POST['duration'];
         }
-        $user = "user ".rand(1,1000000);
-        $query = "INSERT INTO user (first_name,last_name,username,password,role,phone_number,email)
-            VALUES ('$Fname','$Lname','$user','','public','$phone','$email')" ;
-        $result= mysqli_query($db_connection,$query);
+
+        if (empty($errors)) {
+            $query = "INSERT INTO user (first_name,last_name,username,password,role,phone_number,email)
+                    VALUES ('$Fname','$Lname','$Uname','$Password','$member','$phone','$email')";
+            $result= mysqli_query($db_connection,$query);
             if ($result) {
                 $id = mysqli_insert_id($db_connection);
-                $message = "
-                <div class='content'>
-                <h4>Added content<h4>
-                <br/>
-                <div>";
-                echo "$message";
-            } 
-            else {
+                echo '<script type="text/javascript">
+                    window.onload = function () { alert("succesfully created account."); } 
+                    </script>'; 
+            } else {
                 mysqli_close($db_connection);
                 $errors[] = "Error inserting Member: " . mysqli_error($db_connection);
             }
-        $query = "SELECT user_id FROM user WHERE username = '$user'";
+        }
+        }
+        $query = "SELECT user_id FROM user WHERE username = '$Uname'";
         $result= mysqli_query($db_connection,$query);
         if (mysqli_num_rows($result) == 1) {
             $data = mysqli_fetch_assoc($result);
