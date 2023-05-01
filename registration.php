@@ -8,8 +8,11 @@
 </head>
 <body>
     <form  method="post" novalidate>
-                
-                <label for="child">Child Details</label> 
+                <label for="PARENT">ENTER USERNAME</label> 
+                <label for="UserName">User Name</label> 
+                <input type="text" name="UserName" placeholder="User Name "  required> 
+                <br><br>
+                <label for="child">REGISTER CHILD</label> 
                 <br><br>
 
                 <label for="firstname">First Name</label> 
@@ -77,6 +80,12 @@
     error_reporting(E_ALL);
     require ('/Applications/XAMPP/connectiontest.php');
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (!isset($_POST['UserName']) || empty($_POST['UserName'])) {
+            $errors[0] = 'Please enter a valid username';
+          }
+          else {
+              $Uname = $_POST['UserName'];
+        }
         if (!isset($_POST['firstname']) || empty($_POST['firstname'])) {
             $errors[] = 'Please enter a valid First Name';
         }else{

@@ -161,7 +161,10 @@
             $id = mysqli_insert_id($db_connection);
             echo '<script type="text/javascript">
                 window.onload = function () { alert("succesfully created account."); } 
-                </script>'; 
+                </script>';
+            header("Location: index.php");
+            exit;
+            
         } else {
             mysqli_close($db_connection);
             $errors[] = "Error inserting Member: " . mysqli_error($db_connection);
