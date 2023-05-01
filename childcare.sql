@@ -2,8 +2,8 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 24, 2023 at 11:30 AM
+-- Host: localhost
+-- Generation Time: May 01, 2023 at 05:07 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -37,6 +37,13 @@ CREATE TABLE `child` (
   `user_id` int(11) NOT NULL,
   `fee_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `child`
+--
+
+INSERT INTO `child` (`child_id`, `first_name`, `last_name`, `date_of_birth`, `gender`, `categories`, `user_id`, `fee_id`) VALUES
+(3, 'adedddcass', 'awfcrec', '2023-05-06', 'male', 'wobblers', 69, 1);
 
 -- --------------------------------------------------------
 
@@ -80,6 +87,18 @@ CREATE TABLE `fee` (
   `fee` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `fee`
+--
+
+INSERT INTO `fee` (`fee_id`, `duration`, `fee`) VALUES
+(1, 'HALF_DAY', '15.50'),
+(2, 'FULL_DAY', '20.00'),
+(3, 'TWO_DAYS', '55.00'),
+(4, 'THREE_DAYS', '75.50'),
+(5, 'FIVE_DAYS', '100.00'),
+(6, 'WEEKEND', '150.00');
+
 -- --------------------------------------------------------
 
 --
@@ -122,6 +141,14 @@ CREATE TABLE `user` (
   `email` varchar(100) NOT NULL,
   `role` enum('member','admin','public') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `username`, `password`, `phone_number`, `email`, `role`) VALUES
+(68, 'wfceq', 'adfceqd', 'wfcqe', 'Adcwew023342', '0899667533', 'ade2wcwd', 'member'),
+(69, 'scsfvda', 'trj', 'user 521765', '', '089966753', 'aaeddedwe', 'public');
 
 --
 -- Indexes for dumped tables
@@ -183,7 +210,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `child`
 --
 ALTER TABLE `child`
-  MODIFY `child_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `child_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `contact_us_message`
@@ -201,7 +228,7 @@ ALTER TABLE `day_detail`
 -- AUTO_INCREMENT for table `fee`
 --
 ALTER TABLE `fee`
-  MODIFY `fee_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `fee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `service`
@@ -219,7 +246,7 @@ ALTER TABLE `testimonial`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- Constraints for dumped tables
