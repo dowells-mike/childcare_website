@@ -173,7 +173,6 @@
             $data = mysqli_fetch_assoc($result);
             $userID= $data['user_id'];
         }
-        echo $userID;
 
 
         $query = "INSERT INTO child (first_name,last_name,date_of_birth,gender,categories,user_id,fee_id)
