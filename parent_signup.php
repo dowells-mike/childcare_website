@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
-    <head><link rel="stylesheet" href=""></head>
+    <head>    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    </head>
     <title>Parent Signup</title>
     <body>
-    
+    <?php
+    session_start(); 
+    include('header.php'); 
+    ?>
         <!--create a form-->
     <div class = "content">
         <form  method="post" action="parent_signup.php" novalidate >

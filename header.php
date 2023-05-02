@@ -19,6 +19,7 @@
                 <li><a href="services.php">Services</a></li>
                 <li><a href="testimonial.php">Testimonials</a></li>
                 <li><a href="contact_us.php">Contact Us</a></li>
+                <li><a href="registration.php">Register child</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                     <li><a href="index.php">Logged-in User: <?php echo $_SESSION['username'];?></a></li>
@@ -44,6 +45,7 @@
                 <li><a href="services.php">Services</a></li>
                 <li><a href="testimonial.php">Testimonials</a></li>
                 <li><a href="contact_us.php">Contact Us</a></li>
+                <li><a href="registration.php">Register child</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                     <li><a href="index.php">Logged-in Admin <?php echo $_SESSION['username'];?></a></li>
