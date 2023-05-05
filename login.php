@@ -15,7 +15,7 @@
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
   include "header.php";
-  require ('/Applications/XAMPP/connectiontest.php');
+  require('../../../connection.php');
   require("session.php");
 
   function validate_password($password)
@@ -55,39 +55,37 @@
     }
     if (empty($errors)) {
       $sql = "SELECT * FROM user WHERE username='$uname'";
-      
+
       $result = mysqli_query($db_connection, $sql);
       if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
-        $pw=$row['password'];
-        if(password_verify($pass,$pw)){
-        $_SESSION["userid"] = $row['user_id'];
-        $_SESSION["name"] = $row['first_name'];
-        $_SESSION["role"]= $row["role"];
-        $_SESSION["username"]= $row["username"];
-        $_SESSION["last_name"]=$row["last_name"];
-        $_SESSION["child_id"]=$row["child_id"];
-        if ($_SESSION["role"] == "member") {
-          $_SESSION["role"] = "member";
-        } elseif ($_SESSION["role"] == "admin") {
-          $_SESSION["role"] = "admin";
-          if ($_SESSION["child_id"] != null) {
+        $pw = $row['password'];
+        if (password_verify($pass, $pw)) {
+          $_SESSION["userid"] = $row['user_id'];
+          $_SESSION["name"] = $row['first_name'];
+          $_SESSION["role"] = $row["role"];
+          $_SESSION["username"] = $row["username"];
+          $_SESSION["last_name"] = $row["last_name"];
+          $_SESSION["child_id"] = $row["child_id"];
+          if ($_SESSION["role"] == "member") {
             $_SESSION["role"] = "member";
+          } elseif ($_SESSION["role"] == "admin") {
+            $_SESSION["role"] = "admin";
+            if ($_SESSION["child_id"] != null) {
+              $_SESSION["role"] = "member";
+            }
           }
-        }
-        header("Location: index.php");
-        exit();
-        }
-        else{
+          header("Location: index.php");
+          exit();
+        } else {
           echo '<script type="text/javascript">
             window.onload = function () { alert("You may have used a wrong password 🤔. Please try again"); } 
-            </script>'; 
+            </script>';
         }
-      }
-      else{
+      } else {
         echo '<script type="text/javascript">
           window.onload = function () { alert("Username and password does not exist 😪. Please try again"); } 
-          </script>'; 
+          </script>';
       }
     } else {
       echo "<h2>Error!</h2><h3>The following error(s) occurred, Please resubmit your information:</h3>";
@@ -109,19 +107,19 @@
     <br>
     <br>
     <input type="submit" onclick="myfunction()" value="Login" class="Login">
-            <script>
-            function myfunction() {
-            if (alert("Confirming details 👍. please click close for next action")) {
-                //header("Location: index.php");
-                //exit;
-            }
-            }
-            </script>
+    <script>
+      function myfunction() {
+        if (alert("Confirming details 👍. please click close for next action")) {
+          //header("Location: index.php");
+          //exit;
+        }
+      }
+    </script>
   </form>
-            <br><br><br>
+  <br><br><br>
   <br>
   <label> If not and existing user please <a href="signup.php">Sign up</a> here!</label>
-  
+
 </body>
 
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -8,22 +7,22 @@
 </head>
 
 <body>
-<?php
-session_start();
-include 'header.php';
-// Connect to the database
-require ('/Applications/XAMPP/connectiontest.php');
+    <?php
+    session_start();
+    include 'header.php';
+    // Connect to the database
+    require('../../../connection.php');
 
 
-// Retrieve all approved testimonials from the database
-$sql = "SELECT t.*, s.service_name, u.first_name 
+    // Retrieve all approved testimonials from the database
+    $sql = "SELECT t.*, s.service_name, u.first_name 
 FROM testimonial t
 JOIN service s ON t.service_id = s.service_id
 JOIN user u ON t.user_id = u.user_id
 WHERE t.approved = 1
 ORDER BY t.date DESC";
-$result = $db_connection->query($sql);
-?>
+    $result = $db_connection->query($sql);
+    ?>
 
     <div class="container">
         <h1>Testimonials</h1>

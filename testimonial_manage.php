@@ -2,7 +2,7 @@
 session_start();
 include 'header.php';
 // Connect to the database
-require ('/Applications/XAMPP/connectiontest.php');
+require('../../../connection.php');
 
 
 // Check if the user is logged in and is an admin 
@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['testimonial_id']) && isset($_POST['approved'])) {
         $testimonial_id = $_POST['testimonial_id'];
         $approved = $_POST['approved'];
-        $approved_by = $_SESSION['user_id'];
 
         $sql = "UPDATE testimonial SET approved = ? WHERE testimonial_id = ?";
         $stmt = $db_connection->prepare($sql);

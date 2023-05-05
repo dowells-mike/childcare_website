@@ -12,7 +12,7 @@ include 'header.php';
 // }
 
 // Include database connection file
-require ('/Applications/XAMPP/connectiontest.php');
+require('../../../connection.php');
 
 
 // Initialize an array to hold error messages

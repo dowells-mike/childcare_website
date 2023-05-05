@@ -29,7 +29,7 @@ include 'header.php';
         }
 
         // Connect to database
-        require ('/Applications/XAMPP/connectiontest.php');
+        require('../../../connection.php');
 
 
         // Get parameters from URL
