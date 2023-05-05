@@ -1,4 +1,9 @@
 <?php
+//page to manage the messages sent through the contact us form
+require_once 'session.php';
+
+//checking if the user is logged in and has the admin role
+//Otherwise, redirect them to the index page
 session_start();
 /*if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header('Location: index.php');
@@ -99,6 +104,7 @@ $result = $db_connection->query($sql);
         </table>
     </div>
 
+    <!--Script sources-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -108,6 +114,6 @@ $result = $db_connection->query($sql);
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-</body>
 
-</html>
+<!-- Footer -->
+<?php require_once 'footer.php'; ?>

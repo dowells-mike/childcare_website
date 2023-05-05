@@ -1,4 +1,5 @@
 <?php
+include 'header.php'; 
 //set smtp server and port (TO BE FIXED)
 //ini_set('SMTP', 'localhost');
 //ini_set('smtp_port', 25);
@@ -92,12 +93,21 @@ mail($to, $subject, $message, $headers);
     <link rel="stylesheet" href="assets-footer/footer.css">
     <link rel="stylesheet" href="assets_contact_us/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets_contact_us/css/aos.min.css">
-</head>
+
+    <!--Navbar links-->
+    <link rel="stylesheet" href="assets_navbar_user/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica&amp;display=swap">
+    <link rel="stylesheet" href="assets_navbar_user/css/animate.min.css">
+    <link rel="stylesheet" href="assets_navbar_user/css/Navbar-With-Button-icons.css">
+
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+
+
+    <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Childcare Premises</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,23 +129,23 @@ mail($to, $subject, $message, $headers);
                 </li>
             </ul>
             <ul class="navbar-nav">
-                <?php if (isset($_SESSION['user_level'])): ?>
+                <//?php if (isset($_SESSION['user_level'])): ?>
                     <li class="nav-item">
                         <span class="navbar-text">Welcome,
-                            <?php echo $_SESSION['username']; ?>!
+                            <//?php echo $_SESSION['username']; ?>!
                         </span>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout</a>
                     </li>
-                <?php else: ?>
+                <//?php else: ?>
                     <li class="nav-item">
                         <a class="nav-link" href="login.php">Login</a>
                     </li>
-                <?php endif; ?>
+                <//?php endif; ?>
             </ul>
         </div>
-    </nav>
+    </nav>-->
 
     <!--Banner welcoming the user to contact us page in big text-->
     <div class="jumbotron jumbotron-fluid">
