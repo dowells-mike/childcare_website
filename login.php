@@ -65,6 +65,8 @@
         $_SESSION["name"] = $row['first_name'];
         $_SESSION["role"]= $row["role"];
         $_SESSION["username"]= $row["username"];
+        $_SESSION["last_name"]=$row["last_name"];
+        $_SESSION["child_id"]=$row["child_id"];
         header("Location: index.php");
         exit();
         }
@@ -115,3 +117,4 @@
 </body>
 
 </html>
+        

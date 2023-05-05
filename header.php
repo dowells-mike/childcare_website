@@ -19,6 +19,7 @@
                 <li><a href="services.php">Services</a></li>
                 <li><a href="testimonial.php">Testimonials</a></li>
                 <li><a href="contact_us.php">Contact Us</a></li>
+                <li><a href="dayDetails.php">Day Details</a></li>
                 <li><a href="registration.php">Register child</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

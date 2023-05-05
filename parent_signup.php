@@ -117,8 +117,8 @@
             $message = "Welcome $Uname, You have successfully created an account to be a member of our community.";
             $header = "From:adedejikehinde04@icloud.com";
             mail($email,$subject,$message,$header);
-            //header("Location: index.php");
-            //exit;
+            header("Location: index.php");
+            exit;
         } else {
             mysqli_close($db_connection);
             $errors[] = "Error inserting Member: " . mysqli_error($db_connection);

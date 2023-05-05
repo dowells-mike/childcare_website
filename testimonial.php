@@ -1,7 +1,8 @@
 <?php
 // Start session and connect to the database
 session_start();
-require_once '../../../connect.php';
+require ('/Applications/XAMPP/connectiontest.php');
+
 
 // Check if the user is an admin
 $isAdmin = false;
