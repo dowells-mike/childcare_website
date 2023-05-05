@@ -53,20 +53,31 @@
         $errors[] = 'Password should not be less than 8 characters';
       }
     }
-
     if (empty($errors)) {
-      $sql = "SELECT * FROM user WHERE username='$uname' AND password='$pass'";
+      $sql = "SELECT * FROM user WHERE username='$uname'";
+      
       $result = mysqli_query($db_connection, $sql);
       if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
+        $pw=$row['password'];
+        if(password_verify($pass,$pw)){
         $_SESSION["userid"] = $row['user_id'];
         $_SESSION["name"] = $row['first_name'];
         $_SESSION["role"]= $row["role"];
         $_SESSION["username"]= $row["username"];
-        echo $_SESSION["userid"];
-        echo $_SESSION["name"];
         header("Location: index.php");
         exit();
+        }
+        else{
+          echo '<script type="text/javascript">
+            window.onload = function () { alert("You may have used a wrong password 🤔. Please try again"); } 
+            </script>'; 
+        }
+      }
+      else{
+        echo '<script type="text/javascript">
+          window.onload = function () { alert("Username and password does not exist 😪. Please try again"); } 
+          </script>'; 
       }
     } else {
       echo "<h2>Error!</h2><h3>The following error(s) occurred, Please resubmit your information:</h3>";
@@ -78,11 +89,28 @@
 
   ?>
   <form id="login-form" method="post">
+    <label for="username">Username</label>
+    <br>
     <input type="text" name="username" id="UserName" class="LoginForm" placeholder="Username">
+    <br>
+    <label for="password">Password</label>
+    <br>
     <input type="password" name="password" id="password" class="LoginForm" placeholder="Password">
-    <input type="submit" value="Login" id="Login">
+    <br>
+    <br>
+    <input type="submit" onclick="myfunction()" value="Login" class="Login">
+            <script>
+            function myfunction() {
+            if (alert("Confirming details 👍. please click close for next action")) {
+                //header("Location: index.php");
+                //exit;
+            }
+            }
+            </script>
   </form>
-  <p>If not and existing user please <a href="signup.php">Sign up</a> here!</p>
+            <br><br><br>
+  <br>
+  <label> If not and existing user please <a href="signup.php">Sign up</a> here!</label>
   
 </body>
 

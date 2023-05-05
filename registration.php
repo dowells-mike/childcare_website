@@ -9,55 +9,118 @@
 </head>
 <body>
     <?php
-    session_start(); 
+    require("session.php");
+
     include('header.php'); 
+    ?>
+    <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    require ('/Applications/XAMPP/connectiontest.php');
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (!isset($_POST['firstname']) || empty($_POST['firstname'])) {
+            $errors[0] = 'Please enter a valid First Name';
+        }else{
+            $fname = $_POST['firstname'];
+        }
+        if (!isset($_POST['lastname']) || empty($_POST['lastname'])) {
+            $errors[1] = 'Please enter a valid last Name';
+        }else{
+            $lname = $_POST['lastname'];
+        }
+        if (!isset($_POST['DOB']) || empty($_POST['DOB'])) {
+            $errors[2] = 'Please enter a valid birthday';
+        }
+        else{
+            $dob = $_POST['DOB'];
+        }
+        if (!isset($_POST['gender']) || empty($_POST['gender'])) {
+            $errors[3] = 'Please select a gender';
+        }
+        else{
+            $gender = $_POST['gender'];
+        }
+        if (!isset($_POST['category']) || empty($_POST['category'])) {
+            $errors[4] = 'Please select a valid category';
+        }
+        else{
+            $category = $_POST['category'];
+        }
+        if (!isset($_POST['duration']) || empty($_POST['duration'])) {
+            $errors[5] = 'Please select a valid duration';
+        }
+        else{
+            $duration = $_POST['duration'];
+        }
+
+        if (empty($errors)) {
+        $userID = $_SESSION["userid"];
+        $query = "INSERT INTO child (first_name,last_name,date_of_birth,gender,categories,user_id,fee_id)
+            VALUES ('$fname','$lname','$dob','$gender','$category','$userID','$duration')";
+            $result= mysqli_query($db_connection,$query);
+            if ($result) {
+                $id = mysqli_insert_id($db_connection);
+                header("Location: registration.php");
+            } 
+            else {
+                mysqli_close($db_connection);
+                $errors[] = "Error inserting Member: " . mysqli_error($db_connection);
+            }
+        }
+        }
     ?>
     <form  method="post" novalidate>
                 <label for="child">REGISTER CHILD</label> 
                 <br><br>
 
                 <label for="firstname">First Name</label> 
-                 <input type="text" name="firstname"  placeholder="First Name" required>
+                 <input type="text" name="firstname"  placeholder="First Name" value= "<?php echo @$_POST['firstname'];?>" required>
+                 <span class="error">* <?php if (empty($errors[0])){} else echo "<br>".$errors[0];?></span>
                  <br>
 
                 <label for="lastname">Last Name</label> 
-                <input type="text" name="lastname" placeholder="Last Name"  required>
+                <input type="text" name="lastname" placeholder="Last Name" value= "<?php echo @$_POST['lastname'];?>" required>
+                 <span class="error">* <?php if (empty($errors[1])){} else echo "<br>".$errors[1];?></span>
                 <br>
 
                 <label for="birthday">Date of Birth</label> 
-                 <input type="date" name="DOB" required>
+                 <input type="date" name="DOB" value= "<?php echo @$_POST['date'];?>" required>
+                 <span class="error">* <?php if (empty($errors[2])){} else echo "<br>".$errors[2];?></span>
                  <br>
 
                 <label for="gender">Gender</label> 
                 <select name="gender"  >
                 <!--select options-->
-                <option value=""  >Select</option>
+                <option value= ""  ><?php echo @$_POST['gender'];?></option>
                 <option value="male" >
                 male</option>
                 <option value="female" >
                 female</option>
                 </select>
+                 <span class="error">* <?php if (empty($errors[3])){} else echo "<br>".$errors[3];?></span>
                 <br>
 
                 <label for="category">category</label> 
                 <select name="category"  >
                 <!--select options-->
-                <option value=""  >Select</option>
+                <option value=""  ><?php echo @$_POST['category'];?></option>
                 <option value="babies" >
                 babies</option>
                 <option value="wobblers" >
                 wobblers</option>
-                <option value="toddelers" >
+                <option value="toddlers" >
                 toddlers</option>
                 <option value="preschool" >
                 Pre-School</option>
               </select>
+              <span class="error">* <?php if (empty($errors[4])){} else echo "<br>".$errors[4];?></span>
               <br>
 
               <label for="duration">Duration</label> 
                 <select name="duration"  >
                 <!--select options-->
-                <option value=""  >Select</option>
+                <option value="" ><?php echo @$_POST['duration'];?></option>
                 <option value="1" >
                 HALF DAY - €15.50</option>
                 <option value="2" >
@@ -71,74 +134,18 @@
                 <option value="6" >
                 WEEKEND - €150.00</option>
                 </select>
+                 <span class="error">* <?php if (empty($errors[5])){} else echo "<br>".$errors[5];?></span>
                 <br><br>
-            <input type="submit" name="register" value="Register" class="register">
-
-    </form>
-    <?php
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-    require ('/Applications/XAMPP/connectiontest.php');
-    require("session.php");
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (!isset($_POST['firstname']) || empty($_POST['firstname'])) {
-            $errors[] = 'Please enter a valid First Name';
-        }else{
-            $fname = $_POST['firstname'];
-        }
-        if (!isset($_POST['lastname']) || empty($_POST['lastname'])) {
-            $errors[] = 'Please enter a valid last Name';
-        }else{
-            $lname = $_POST['lastname'];
-        }
-        if (!isset($_POST['DOB']) || empty($_POST['DOB'])) {
-            $errors[] = 'Please enter a valid birthday';
-        }
-        else{
-            $dob = $_POST['DOB'];
-        }
-        if (!isset($_POST['gender']) || empty($_POST['gender'])) {
-            $errors[] = 'Please select a gender';
-        }
-        else{
-            $gender = $_POST['gender'];
-        }
-        if (!isset($_POST['category']) || empty($_POST['category'])) {
-            $errors[] = 'Please select a valid category';
-        }
-        else{
-            $category = $_POST['category'];
-        }
-        if (!isset($_POST['duration']) || empty($_POST['duration'])) {
-            $errors[] = 'Please select a valid duration';
-        }
-        else{
-            $duration = $_POST['duration'];
-        }
-
-        if (empty($errors)) {
-        $userID = $_SESSION["userid"];
-
-
-        $query = "INSERT INTO child (first_name,last_name,date_of_birth,gender,categories,user_id,fee_id)
-            VALUES ('$fname','$lname','$dob','$gender','$category','$userID','$duration')";
-            $result= mysqli_query($db_connection,$query);
-            if ($result) {
-                $id = mysqli_insert_id($db_connection);
-                $message = "
-                <div class='content'>
-                <h4>Added content<h4>
-                <br/>
-                <div>";
-                echo "$message";
-            } 
-            else {
-                mysqli_close($db_connection);
-                $errors[] = "Error inserting Member: " . mysqli_error($db_connection);
+            <input type="submit" onclick="myfunction()" value="Register" class="register">
+            <script>
+            function myfunction() {
+            if (alert("Confirming details . please click close for next action👍")) {
+                header("Location: index.php");
+                exit;
             }
-        }
-        }
-    ?>
+            }
+            </script>
+    </form>
+    
 </body>
 </html>

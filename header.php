@@ -41,11 +41,28 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="index.php">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.php">View</a></li>
+                        <li><a href="index_edit.php">Edit</a></li>
+                    </ul>
+                </li>
                 <li><a href="services.php">Services</a></li>
-                <li><a href="testimonial.php">Testimonials</a></li>
-                <li><a href="contact_us.php">Contact Us</a></li>
-                <li><a href="registration.php">Register child</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Day Details <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="dayDetails.php">View</a></li>
+                        <li><a href="day_details_edit.php">Edit</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Testimonials <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="testimonial.php">View</a></li>
+                        <li><a href="testimonial_manage.php">Manage</a></li>
+                    </ul>
+                </li>        
             </ul>
             <ul class="nav navbar-nav navbar-right">
                     <li><a href="index.php">Logged-in Admin <?php echo $_SESSION['username'];?></a></li>
@@ -73,16 +90,9 @@
                 <li><a href="contact_us.php">Contact Us</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                    <li><a href="login.php">Parent Login</a></li>
-                    <li><a href="login.php">Admin Login</a></li>
+                    <li><a href="login.php">User Login</a></li>
                 <?php } ?>
             </ul>
-            <form class="navbar-form navbar-right" action="search.php" method="get">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search" name="q">
-                </div>
-                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-            </form>
             <!--<?php if(isset($_SESSION['role'])&&$_SESSION['role']==='member') { ?>
                 <p class="navbar-text navbar-right">Logged in as Parent</p>
             <?php } elseif(isset($_SESSION['role'])&&$_SESSION['role']==='admin') { ?>

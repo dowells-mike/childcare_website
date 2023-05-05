@@ -7,17 +7,16 @@
     <title>Admin Signup</title>
 </head>
 <body>
-    <form action="" method="post">
-        <label>Company password</label>
-        <input type="password" name = "company_password" placeholder="company password" required> 
-    </form>
+    
     <?php 
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!isset($_POST['company_password']) || empty($_POST['company_password'])) {
-            $errors[] = 'Please enter the valid password';
+            echo '<script type="text/javascript">
+                window.onload = function () { alert("incorrect password, please try again or if not an admin try parent login"); } 
+                </script>'; 
         }else{
             $cpass = $_POST['company_password'];
             if ($cpass === "childcare") {
@@ -25,11 +24,18 @@
                 exit;
             }
             else{
-                echo "incorrect password, please try again or if not an admin try parent login";
+                echo '<script type="text/javascript">
+                window.onload = function () { alert("incorrect password, please try again or if not an admin try parent login"); } 
+                </script>'; 
             }
         }
     }
     ?>
+    <form action="" method="post" novalidate>
+        <label>Company password</label>
+        <input type="password" name = "company_password" placeholder="company password" required> 
+        <span class="error">* <?php if (empty($errors[0])){} else echo "<br>".$errors[0];?></span>
+    </form>
 
 </body>
 </html>
