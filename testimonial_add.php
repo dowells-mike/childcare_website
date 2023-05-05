@@ -2,14 +2,15 @@
 session_start();
 include 'header.php';
 // Connect to the database
-require '../../../connection.php';
+require ('/Applications/XAMPP/connectiontest.php');
 
-// Check if the user is logged in and is a parent
-if ($_SESSION["role"] != "member") {
+
+/* Check if the user is logged in and is a parent
+if ($_SESSION["role"] !== "member") {
     header("Location: index.php");
     exit();
 }
-
+*/
 // Initialize variables for form validation
 $service_id = $date = $comment = '';
 $service_id_err = $date_err = $comment_err = '';
@@ -39,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Insert the testimonial into the database if there are no errors
     if (empty($service_id_err) && empty($date_err) && empty($comment_err)) {
-        if (isset($_SESSION['user_id'])) {
-            $user_id = $_SESSION['user_id']; // Set the user_id value to the current user's ID
+        if (isset($_SESSION['userid'])) {
+            $user_id = $_SESSION['userid']; // Set the user_id value to the current user's ID
             $sql = "INSERT INTO testimonial (date, comment, user_id, service_id) VALUES (?, ?, ?, ?)";
             $stmt = $db_connection->prepare($sql);
             $stmt->bind_param("ssii", $date, $comment, $user_id, $service_id);
@@ -84,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" id="parent_name" name="parent_name" class="form-control" value="<?php echo $_SESSION['name']; ?>" disabled>
         </div>
 
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" novalidate>
             <div class="form-group <?php echo (!empty($service_id_err)) ? 'has-error' : ''; ?>">
                 <label for="service_id">Service:</label>
                 <select id="service_id" name="service_id" class="form-control" required>
@@ -97,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             $selected = ($row['service_id'] == $service_id) ? 'selected' : '';
-                            echo "<option value='" . $row['service_id'] . "' $selected>" . $row['service_name'] . "</option>";
+                            echo "<option value='" . $row['service_id'] . "' $selected>" . $row['name'] . "</option>";
                         }
                     }
                     ?>

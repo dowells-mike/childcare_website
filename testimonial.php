@@ -1,8 +1,19 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Testimonials</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
 <?php
 session_start();
 include 'header.php';
 // Connect to the database
-require '../../../connection.php';
+require ('/Applications/XAMPP/connectiontest.php');
+
 
 // Retrieve all approved testimonials from the database
 $sql = "SELECT t.*, s.service_name, u.first_name 
@@ -14,15 +25,6 @@ ORDER BY t.date DESC";
 $result = $db_connection->query($sql);
 ?>
 
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Testimonials</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-</head>
-
-<body>
     <div class="container">
         <h1>Testimonials</h1>
         <?php

@@ -67,6 +67,14 @@
         $_SESSION["username"]= $row["username"];
         $_SESSION["last_name"]=$row["last_name"];
         $_SESSION["child_id"]=$row["child_id"];
+        if ($_SESSION["role"] == "member") {
+          $_SESSION["role"] = "member";
+        } elseif ($_SESSION["role"] == "admin") {
+          $_SESSION["role"] = "admin";
+          if ($_SESSION["child_id"] != null) {
+            $_SESSION["role"] = "member";
+          }
+        }
         header("Location: index.php");
         exit();
         }
@@ -117,4 +125,3 @@
 </body>
 
 </html>
-        

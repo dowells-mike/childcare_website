@@ -29,7 +29,8 @@ include 'header.php';
         }
 
         // Connect to database
-        require_once "../../../connection.php";
+        require ('/Applications/XAMPP/connectiontest.php');
+
 
         // Get parameters from URL
         $child_id = $_GET["child_id"] ?? null;

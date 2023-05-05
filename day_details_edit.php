@@ -12,7 +12,8 @@ include 'header.php';
 // }
 
 // Include database connection file
-include '../../../connection.php';
+require ('/Applications/XAMPP/connectiontest.php');
+
 
 // Initialize an array to hold error messages
 $errors = array();

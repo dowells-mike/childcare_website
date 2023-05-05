@@ -67,11 +67,36 @@
                 mysqli_close($db_connection);
                 $errors[] = "Error inserting Member: " . mysqli_error($db_connection);
             }
+        
+            
         }
         }
     ?>
+    <h3>Please use the Fee infromation to select child duration</h3>
+    <table width="100%" border=1px solid black style="border-collapse:collapse;">
+    <thead>
+    <tr>
+    <th><strong>FEE</strong></th>
+    <th><strong>DURATION</strong></th>
+    </tr>
+    </thead>
+    <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    $query = "SELECT * FROM FEE ORDER BY fee_id";
+    $result= mysqli_query($db_connection,$query);
+    while($row = mysqli_fetch_assoc($result)) {
+        ?>
+    <tr>
+    <td align="center"><?php echo $row["fee"]; ?></td>
+    <td align="center"><?php echo $row["duration"]; ?></td>
+    </tr>
+    <?php  } ?>
+    </tbody>
+    </table>
     <form  method="post" novalidate>
-                <label for="child">REGISTER CHILD</label> 
+                <h1>REGISTER CHILD</h1>
                 <br><br>
 
                 <label for="firstname">First Name</label> 
@@ -122,20 +147,21 @@
                 <!--select options-->
                 <option value="" ><?php echo @$_POST['duration'];?></option>
                 <option value="1" >
-                HALF DAY - €15.50</option>
+                HALF DAY</option>
                 <option value="2" >
-                FULL DAY - €20.00</option>
+                FULL DAY</option>
                 <option value="3" >
-                TWO DAYS - €55.00</option>
+                TWO DAYS</option>
                 <option value="4" >
-                THREE DAYS - €75.50</option>
+                THREE DAYS</option>
                 <option value="5" >
-                FIVE DAYS - €100.00</option>
+                FIVE DAYS</option>
                 <option value="6" >
-                WEEKEND - €150.00</option>
+                WEEKEND</option>
                 </select>
                  <span class="error">* <?php if (empty($errors[5])){} else echo "<br>".$errors[5];?></span>
                 <br><br>
+
             <input type="submit" onclick="myfunction()" value="Register" class="register">
             <script>
             function myfunction() {

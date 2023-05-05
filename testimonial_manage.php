@@ -2,10 +2,11 @@
 session_start();
 include 'header.php';
 // Connect to the database
-require '../../../connection.php';
+require ('/Applications/XAMPP/connectiontest.php');
 
-// Check if the user is logged in and is an admin or a teacher
-if ($_SESSION["role"] != "admin" && $_SESSION["role"] != "teacher") {
+
+// Check if the user is logged in and is an admin 
+if ($_SESSION["role"] != "admin") {
     header("Location: index.php");
     exit();
 }

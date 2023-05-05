@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 01, 2023 at 05:07 PM
+-- Generation Time: May 05, 2023 at 12:44 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -37,13 +37,6 @@ CREATE TABLE `child` (
   `user_id` int(11) NOT NULL,
   `fee_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `child`
---
-
-INSERT INTO `child` (`child_id`, `first_name`, `last_name`, `date_of_birth`, `gender`, `categories`, `user_id`, `fee_id`) VALUES
-(3, 'adedddcass', 'awfcrec', '2023-05-06', 'male', 'wobblers', 69, 1);
 
 -- --------------------------------------------------------
 
@@ -136,19 +129,11 @@ CREATE TABLE `user` (
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `username` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` text NOT NULL,
   `phone_number` varchar(30) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `role` enum('member','admin','public') NOT NULL
+  `role` enum('member','admin') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `username`, `password`, `phone_number`, `email`, `role`) VALUES
-(68, 'wfceq', 'adfceqd', 'wfcqe', 'Adcwew023342', '0899667533', 'ade2wcwd', 'member'),
-(69, 'scsfvda', 'trj', 'user 521765', '', '089966753', 'aaeddedwe', 'public');
 
 --
 -- Indexes for dumped tables
