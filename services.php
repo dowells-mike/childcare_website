@@ -11,7 +11,7 @@ include 'header.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services and Facilities</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="service.css">
+    <link rel="stylesheet" href="services.css">
     <script>
         $(document).ready(function() {
             $('.thumbnail').hover(function() {
