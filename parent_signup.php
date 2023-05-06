@@ -2,8 +2,12 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Parent Signup</title>
 </head>
-<title>Parent Signup</title>
 
 <body>
     <?php
@@ -17,7 +21,8 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    require('../../../connection.php');
+    require ('/Applications/XAMPP/connectiontest.php');
+
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $member = "member";
@@ -71,6 +76,15 @@
           Password should contain numbers <br> Password should not be less than 8 characters<br><br> ';
             }
         }
+        if (!isset($_POST['confirm-Password']) || empty($_POST['confirm-Password'])) {
+            $errors[3] = 'Please enter a valid password<br><br>';
+        } else {
+            $cpass = $_POST['confirm-Password'];
+            if ($cpass == $Password){
+            }else{
+                $errors[3] = 'Passwords do not match<br><br>';
+            }
+        }
         function validate_phone($phone)
         {
             if (preg_match('/^[0-9]{10}+$/', $phone)) {
@@ -79,6 +93,7 @@
                 return false;
             }
         }
+        
 
         if (!isset($_POST['phone']) || empty($_POST['phone'])) {
             $errors[4] = 'Please enter a valid phone Number<br><br>';
@@ -160,6 +175,15 @@
                                         </div>
                                         <div class="right">
                                             <input type="password" name="Password" placeholder="Password" value="<?php echo @$_POST['Password']; ?>" required>
+                                            <span class="error">* <?php if (empty($errors[3])) {
+                                                                    } else echo "<br>" . $errors[3]; ?></span>
+                                        </div>
+                                        <div class="row">
+                                        <div class="left">
+                                            <label for="confirm-Password">Confirm-Password</label>
+                                        </div>
+                                        <div class="right">
+                                            <input type="password" name="confirm-Password" placeholder="confirm Password" required>
                                             <span class="error">* <?php if (empty($errors[3])) {
                                                                     } else echo "<br>" . $errors[3]; ?></span>
                                         </div>

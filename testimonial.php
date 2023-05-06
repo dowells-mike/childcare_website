@@ -11,16 +11,17 @@
     session_start();
     include 'header.php';
     // Connect to the database
-    require('../../../connection.php');
+    require ('/Applications/XAMPP/connectiontest.php');
+
 
 
     // Retrieve all approved testimonials from the database
-    $sql = "SELECT t.*, s.service_name, u.first_name 
-FROM testimonial t
-JOIN service s ON t.service_id = s.service_id
-JOIN user u ON t.user_id = u.user_id
-WHERE t.approved = 1
-ORDER BY t.date DESC";
+    $sql = "SELECT t.*, s.name, u.first_name 
+    FROM testimonial t
+    JOIN service s ON t.service_id = s.service_id
+    JOIN user u ON t.user_id = u.user_id
+    WHERE t.approved = 1
+    ORDER BY t.date DESC";
     $result = $db_connection->query($sql);
     ?>
 
@@ -43,9 +44,9 @@ ORDER BY t.date DESC";
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 // Get the service name
-                $sql_service = "SELECT service_name FROM service WHERE service_id = " . $row['service_id'];
+                $sql_service = "SELECT name FROM service WHERE service_id = " . $row['service_id'];
                 $result_service = $db_connection->query($sql_service);
-                $service_name = ($result_service->num_rows > 0) ? $result_service->fetch_assoc()['service_name'] : '';
+                $service_name = ($result_service->num_rows > 0) ? $result_service->fetch_assoc()['name'] : '';
 
                 // Get the parent name
                 $sql_user = "SELECT first_name FROM user WHERE user_id = " . $row['user_id'];
@@ -54,7 +55,7 @@ ORDER BY t.date DESC";
                 echo '<div class="panel panel-default">';
                 echo '<div class="panel-body">';
                 echo '<p><strong>' . (isset($row['first_name']) ? $row['first_name'] : '') . '</strong> on <strong>' . date('F j, Y', strtotime($row['date'])) . '</strong></p>';
-                echo '<p><em>Service: ' . (isset($row['service_name']) ? $row['service_name'] : '') . '</em></p>';
+                echo '<p><em>Service: ' . (isset($row['name']) ? $row['name'] : '') . '</em></p>';
                 echo '<p>' . $row['comment'] . '</p>';
                 echo '</div>';
                 echo '</div>';

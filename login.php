@@ -15,7 +15,7 @@
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
   include "header.php";
-  require('../../../connection.php');
+  require ('/Applications/XAMPP/connectiontest.php');
   require("session.php");
 
   function validate_password($password)

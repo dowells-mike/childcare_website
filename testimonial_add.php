@@ -2,7 +2,8 @@
 session_start();
 include 'header.php';
 // Connect to the database
-require('../../../connection.php');
+require ('/Applications/XAMPP/connectiontest.php');
+
 
 
 /* Check if the user is logged in and is a parent

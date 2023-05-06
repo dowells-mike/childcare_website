@@ -27,7 +27,7 @@
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
-        require('../../../connection.php');
+        require ('/Applications/XAMPP/connectiontest.php');
         $count = 1;
         $query = "SELECT * FROM FEE ORDER BY fee_id";
         $result = mysqli_query($db_connection, $query);

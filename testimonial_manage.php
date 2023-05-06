@@ -1,8 +1,20 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Testimonials</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
 <?php
 session_start();
 include 'header.php';
 // Connect to the database
-require('../../../connection.php');
+require ('/Applications/XAMPP/connectiontest.php');
+
 
 
 // Check if the user is logged in and is an admin 
@@ -36,16 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $sql = "SELECT * FROM testimonial";
 $result = $db_connection->query($sql);
 ?>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Testimonials</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-</head>
-
-<body>
     <div class="container">
         <h1>Testimonials</h1>
         <?php
@@ -75,9 +77,9 @@ $result = $db_connection->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         // Get the service name
-                        $sql_service = "SELECT service_name FROM service WHERE service_id = " . $row['service_id'];
+                        $sql_service = "SELECT name FROM service WHERE service_id = " . $row['service_id'];
                         $result_service = $db_connection->query($sql_service);
-                        $service_name = ($result_service->num_rows > 0) ? $result_service->fetch_assoc()['service_name'] : '';
+                        $service_name = ($result_service->num_rows > 0) ? $result_service->fetch_assoc()['name'] : '';
 
                         // Get the parent name
                         $sql_user = "SELECT first_name FROM user WHERE user_id = " . $row['user_id'];

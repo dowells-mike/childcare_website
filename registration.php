@@ -19,7 +19,7 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    require('../../../connection.php');
+    require ('/Applications/XAMPP/connectiontest.php');
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!isset($_POST['firstname']) || empty($_POST['firstname'])) {
             $errors[0] = 'Please enter a valid First Name';
